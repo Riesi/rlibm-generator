@@ -119,7 +119,7 @@ unique_ptr<Poly> PolyFinder::LinearSolve(int lb, int ub, vector<int>& power) {
         onePiece->highIndex = ub;
         
         for (int i = 0; i < termSize; i++) {
-            onePiece->coeffs.push_back(mpq_get_d(*(prim[i].getMpqPtr_w())));
+            onePiece->coeffs.push_back(mpq_get_d((prim[i].backend().data())));
         }
         return onePiece;
     }

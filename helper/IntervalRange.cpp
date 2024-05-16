@@ -1,4 +1,8 @@
 #include "IntervalRange.hpp"
+#include <cstdio>
+#include <cstdlib>
+#include <algorithm>
+
 
 void IntervalRange::AddInterval(double _xtrans, double _lb, double _ub) {
     // Why do I have to create one to search for one...
@@ -14,7 +18,7 @@ void IntervalRange::AddInterval(double _xtrans, double _lb, double _ub) {
                         const unique_ptr<Interval>& right) {
         return left->xtrans < right->xtrans;
     };
-    auto insertPos = lower_bound(intervals.begin(), intervals.end(), info, comparer);
+    auto insertPos = std::lower_bound(intervals.begin(), intervals.end(), info, comparer);
         
     // Check if it already exists:
     if (insertPos != intervals.end() && (*insertPos)->xtrans == _xtrans) {
